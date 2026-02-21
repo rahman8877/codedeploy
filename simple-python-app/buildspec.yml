@@ -12,11 +12,11 @@ phases:
   pre_build:
     commands:
       - echo "Installing dependencies..."
-      - pip install -r day-13/simple-python-app/requirements.txt
+      - pip install -r simple-python-app/requirements.txt # 'day-13/' মুছে দেওয়া হয়েছে
   build:
     commands:
       - echo "Running tests..."
-      - cd day-13/simple-python-app/
+      - cd simple-python-app/ # সরাসরি ফোল্ডারে ঢোকা হচ্ছে
       - echo "Building Docker image..."
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
       - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/simple-python-flask-app:latest" .
@@ -27,5 +27,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: ../simple-python-app
-
+  base-directory: simple-python-app # '../' এর বদলে সরাসরি ফোল্ডার নাম
